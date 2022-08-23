@@ -1,0 +1,6 @@
+Notes on formatting excel program: 
+
+(alt+enter) for new line in cell
+Enclose names of speakers with <>
+Blue events: [b]
+Green events: [g]

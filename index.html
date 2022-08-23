@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<script src="https://unpkg.com/read-excel-file@5.x/bundle/read-excel-file.min.js"></script>
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" />
+  <title>ASGBI PROGRAMME</title>
+  <input type="file" id="input" />
+</head>
+
+<body>
+    
+    <div id="speakerlistholder"></div>
+</body>
+
+<script language="javascript" src="utils.js"></script>
+<script language="javascript" src="interpretData.js"></script>
+
+
+
+
+<script>
+  var input = document.getElementById('input')
+  input.addEventListener('change', function() {
+    readXlsxFile(input.files[0]).then(function(rows) {
+        // `rows` is an array of rows
+      // each row being an array of cells.
+        //console.log(rows)
+        findRoomRow(rows)
+        listRooms(rows)
+        listSpeakers(rows)
+        console.log(speakers)
+        // replaceStringCharacter(rows, '[e]', '')
+        // replaceStringCharacter(rows, '[p]', '')
+        // replaceStringCharacter(rows, '[b]', '')
+        // replaceStringCharacter(rows, '[r]', '')
+        //replaceStringCharacter(rows, '[s]', '')
+
+      handleGlobalRows(rows)
+      handleEmptyCells(rows)
+      convertDatesToInt(rows)
+      replaceStringCharacter(rows, '<', '')
+      replaceStringCharacter(rows, '>', '')
+      createTable(rows)
+      printSpeakers(speakers)
+    })
+  })
+</script>
+
+</html>
