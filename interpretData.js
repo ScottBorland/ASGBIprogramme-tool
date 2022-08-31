@@ -23,6 +23,15 @@ const listRooms = ((rows) => {
     console.log(rooms)
 })
 
+const retrieveDate = (rows) => {
+    var date = document.createElement('header')
+    var dateAsString = convertDateToString(rows[0][1])
+    rows[0][1] = convertDateToString(rows[0][1])
+    date.innerHTML = dateAsString
+    // rows = rows.splice(0, 1)
+    document.body.appendChild(date)
+}
+
 const listSpeakers = ((rows) => {
     rows.forEach((row, index) => {
         row.forEach((item, index) => {
@@ -35,10 +44,11 @@ const listSpeakers = ((rows) => {
 
 function createTable(tableData) {
     var table = document.createElement('table');
+    table.id = "programme-table"
     var tableBody = document.createElement('tbody');
   
     tableData.forEach(function(rowData, index) {
-        if(index == 0){var row = document.createElement('tr')}else{
+        if(index == 0){return}else{
             var row = document.createElement('tr')
         }
       
@@ -79,6 +89,8 @@ const setCellColor = (cell, cellData) => {
     }else if (checkStringForCharacter(cellData, '[r]')){
         cell.style.backgroundColor = 'slateblue'
         cellData = replaceCellCharacter(cellData, '[r]', '')
+    }else if(checkStringForCharacter(cellData, '[n]')){
+        cellData = replaceCellCharacter(cellData, '[n]', '')
     }
     return cellData
 }

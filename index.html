@@ -5,12 +5,17 @@
 
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link href="styles.css" rel="stylesheet">
   <link rel="icon" href="favicon.ico" />
-  <title>ASGBI PROGRAMME</title>
-  <input type="file" id="input" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+  <script src="upload.js"></script>
+  <title>Upload</title>
+  <input type="file" id="input"/>
+  <!-- <button onclick="upload(unchangedRows)">Upload</button> -->
+  
 </head>
 
 <body>
@@ -25,22 +30,18 @@
 
 
 <script>
+  var unchangedRows = {};
   var input = document.getElementById('input')
   input.addEventListener('change', function() {
     readXlsxFile(input.files[0]).then(function(rows) {
         // `rows` is an array of rows
       // each row being an array of cells.
         //console.log(rows)
-        findRoomRow(rows)
-        listRooms(rows)
-        listSpeakers(rows)
-        console.log(speakers)
-        // replaceStringCharacter(rows, '[e]', '')
-        // replaceStringCharacter(rows, '[p]', '')
-        // replaceStringCharacter(rows, '[b]', '')
-        // replaceStringCharacter(rows, '[r]', '')
-        //replaceStringCharacter(rows, '[s]', '')
-
+      
+      retrieveDate(rows)
+      findRoomRow(rows)
+      listRooms(rows)
+      listSpeakers(rows)
       handleGlobalRows(rows)
       handleEmptyCells(rows)
       convertDatesToInt(rows)
@@ -48,6 +49,13 @@
       replaceStringCharacter(rows, '>', '')
       createTable(rows)
       printSpeakers(speakers)
+      input.remove()
+      var button = document.createElement('button')
+      button.textContent = 'Upload'
+      document.body.appendChild(button)
+      console.log(rows)
+      upload(rows)
+      
     })
   })
 </script>

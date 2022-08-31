@@ -4,7 +4,12 @@
 
 input{
   padding-bottom: 20px;
-  display: block;
+  display: flex;
+  margin: auto;
+}
+
+button{
+  display: flex;
   margin: auto;
 }
 
@@ -12,7 +17,7 @@ table {
     font-family: 'Roboto', sans-serif;
     margin-left: auto;
     margin-right: auto;
-    width: 95%;
+    width: 98%;
     border-collapse: collapse;
     font-size: 10;
     min-width: 400px;
@@ -22,6 +27,7 @@ table {
     white-space: pre-line;
     border: 1px solid black;
     padding-bottom: 40px;
+    margin-top: 20px;
   }
 
   /* table tbody tr {
@@ -37,6 +43,8 @@ table {
     margin: auto;
     padding-top: 20px;
     padding-bottom: 5px;
+    font-size: 20px;
+    font-weight: 500;
   }
 
  li{

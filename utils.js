@@ -17,10 +17,6 @@ const tableCreate = (row, col) => {
     body.appendChild(tbl);
 }
 
-var tableData = [["r1c1", "r1c2"], ["r2c1", "r2c2"], ["r3c1", "r3c2"]];
-
-
-
 const replaceStringCharacter = (rows, character, replacement) => {
     rows.forEach((row, index) => {
         var rowsIndex = index
@@ -50,6 +46,13 @@ const checkStringForCharacter = (item, character) => {
     }
 }
 
+const convertDateToString  = (date) => {
+    date = date.toDateString()
+    // rows[rowsIndex][index] = item.slice(0, 5)
+    console.log(date)
+    return date
+}
+
 const convertDatesToInt  = (rows) => {
     rows.forEach((row, index) => {
         var rowsIndex = index;
@@ -61,3 +64,14 @@ const convertDatesToInt  = (rows) => {
         })
     })  
 }
+
+const exportToPDF = () => {
+    var doc = new jspdf.jsPDF()
+    doc.autoTable({ 
+        html: '#programme-table',
+    })
+    doc.save('table.pdf')
+}
+
+
+
