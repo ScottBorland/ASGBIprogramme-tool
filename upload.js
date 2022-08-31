@@ -9,6 +9,5 @@ const upload = async (rows) =>{
     },
     body: JSON.stringify(rows)
   })
-  console.log(JSON.stringify(rows))
 }
 

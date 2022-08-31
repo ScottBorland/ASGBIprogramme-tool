@@ -13,12 +13,22 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
   <script src="upload.js"></script>
   <title>Upload</title>
-  <input type="file" id="input"/>
+  <!-- <input type="file" id="input"/> -->
   <!-- <button onclick="upload(unchangedRows)">Upload</button> -->
   
 </head>
 
 <body>
+  <div id="drop-area">
+    <form class="my-form">
+      <p>Drag and drop a custom excel file to get started</p>
+      <input type="file" id="fileElem" onchange="handleFiles(this.files)">
+      <label class="button" for="fileElem">Select Spreadsheet</label>
+    </form>
+    <!-- <progress id="progress-bar" max=100 value=0></progress> -->
+    </div>
+    
+    <script src="selectFile.js"></script>
     
     <div id="speakerlistholder"></div>
 </body>
@@ -32,6 +42,7 @@
 <script>
   var unchangedRows = {};
   var input = document.getElementById('input')
+  var fileSelector = document.getElementById('drop-area')
   input.addEventListener('change', function() {
     readXlsxFile(input.files[0]).then(function(rows) {
         // `rows` is an array of rows
