@@ -106,6 +106,33 @@ table {
     margin-right: 10px;
     vertical-align: middle;
   }
+  .button-upload{
+    display: inline-block;
+    font-size: 15px;
+    padding: 10px;
+    background: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 2px;
+     position:absolute;
+     top:0;
+     right:0;
+     margin-right: 250px;
+     margin-top: 20px;
+  }
+  .button-upload:hover {
+    background: #ddd;
+  }
+  .loading-gif{
+    padding: 10px;
+    margin-right: 2px;
+     position:absolute;
+     top:0;
+     right:0;
+     margin-right: -190px;
+     margin-top: -120px;
+  }
   .button {
     display: inline-block;
     padding: 10px;

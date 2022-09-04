@@ -49,7 +49,6 @@ const checkStringForCharacter = (item, character) => {
 const convertDateToString  = (date) => {
     date = date.toDateString()
     // rows[rowsIndex][index] = item.slice(0, 5)
-    console.log(date)
     return date
 }
 

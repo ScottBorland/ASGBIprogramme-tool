@@ -27,6 +27,12 @@
     </form>
     <!-- <progress id="progress-bar" max=100 value=0></progress> -->
     </div>
+    <div>
+     
+        <!-- <button id="uploadButton" class="button-upload">Upload</button>
+        <progress id="file" value="23" max="100"> 32% </progress> -->
+  
+    </div>
     
     <script src="selectFile.js"></script>
     
@@ -41,34 +47,31 @@
 
 <script>
   var unchangedRows = {};
-  var input = document.getElementById('input')
+  //var input = document.getElementById('input')
   var fileSelector = document.getElementById('drop-area')
-  input.addEventListener('change', function() {
-    readXlsxFile(input.files[0]).then(function(rows) {
-        // `rows` is an array of rows
-      // each row being an array of cells.
-        //console.log(rows)
+  // input.addEventListener('change', function() {
+  //   readXlsxFile(input.files[0]).then(function(rows) {
       
-      retrieveDate(rows)
-      findRoomRow(rows)
-      listRooms(rows)
-      listSpeakers(rows)
-      handleGlobalRows(rows)
-      handleEmptyCells(rows)
-      convertDatesToInt(rows)
-      replaceStringCharacter(rows, '<', '')
-      replaceStringCharacter(rows, '>', '')
-      createTable(rows)
-      printSpeakers(speakers)
-      input.remove()
-      var button = document.createElement('button')
-      button.textContent = 'Upload'
-      document.body.appendChild(button)
-      console.log(rows)
-      upload(rows)
+  //     retrieveDate(rows)
+  //     findRoomRow(rows)
+  //     listRooms(rows)
+  //     listSpeakers(rows)
+  //     handleGlobalRows(rows)
+  //     handleEmptyCells(rows)
+  //     convertDatesToInt(rows)
+  //     replaceStringCharacter(rows, '<', '')
+  //     replaceStringCharacter(rows, '>', '')
+  //     createTable(rows)
+  //     printSpeakers(speakers)
+  //     input.remove()
+  //     var button = document.createElement('button')
+  //     button.textContent = 'Upload'
+  //     document.body.appendChild(button)
+  //     console.log(rows)
+  //     upload(rows)
       
-    })
-  })
+  //   })
+  // })
 </script>
 
 </html>
