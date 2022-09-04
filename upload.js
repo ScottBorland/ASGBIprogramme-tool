@@ -1,5 +1,5 @@
 const upload = async (rows) =>{
-  alert('Spreadsheet has been uploaded and is now viewable at file:///C:/Users/scott/Documents/asgbi-tool-public-view/index.html')
+  alert('Spreadsheet has been uploaded and is now viewable at https://scottborland.github.io/ASGBI-public-view')
     fetch('https://asgbi-programme.herokuapp.com', {
     method: 'POST',
     mode: 'cors',
