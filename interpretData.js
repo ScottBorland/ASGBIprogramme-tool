@@ -20,7 +20,6 @@ const listRooms = ((rows) => {
             rooms.push(item)
         }
     })
-    //console.log(rooms)
 })
 
 const retrieveDate = (rows) => {
