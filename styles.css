@@ -25,9 +25,9 @@ table {
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15 );
     white-space: pre-line;
-    border: 1px solid black;
-    padding-bottom: 40px;
+    border: 0px solid black;
     margin-top: 20px;
+    margin-bottom: 30px;
   }
 
   /* table tbody tr {
@@ -57,12 +57,14 @@ table {
   display: table;
   margin: auto
  }
-
+thead{
+  padding-top:15px;
+}
   td {
     padding: 2px 5px;
     max-width: 800px;
     border-right: black solid 1px;
-    border-left: black solid 1px;
+    border-left: black solid 0px;
     text-align: center;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -143,6 +145,23 @@ table {
   }
   .button:hover {
     background: #ddd;
+  }
+  .speaker-table{
+    padding: 3px;
+    display: inline;
+    margin-top: 80px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 300;
+    border: 0px solid #ccc;
+  }
+  .speaker-table-cell{
+    border-right: white solid 1px;
+    border-left: white solid 1px;
+  }
+  .speaker-table-row{
+    border-right: white solid 1px;
+    border-left: white solid 1px;
   }
   #fileElem {
     display: none;

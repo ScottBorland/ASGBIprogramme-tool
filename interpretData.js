@@ -2,6 +2,8 @@ roomsRow = 'null'
 rooms = []
 speakers = []
 
+ArrayOfSpeakersLists = []
+
 speakerSignifierStart = '<'
 speakerSignifierEnd = '>'
 
@@ -13,6 +15,17 @@ const findRoomRow = (rows) => {
     })
 }
 
+const findDateRows = (rows) => {
+    datesRows = []
+    rows.forEach((row, index) => {
+        if(row[0] == 'Date:'){
+            datesRows.push(index);
+        }    
+    })
+    console.log(datesRows)
+    return datesRows
+}
+
 const listRooms = ((rows) => {
     roomsArray = rows[roomsRow]
     roomsArray.forEach((item) => {
@@ -21,6 +34,19 @@ const listRooms = ((rows) => {
         }
     })
 })
+
+const separateTables = (rows, dateRows) => {
+    var tables = []
+    dateRows.forEach((dateRow, index) => {
+        if(index != dateRows.length - 1){
+            var spliceLength = dateRows[index+1] - dateRows[index]
+            tables[index] = rows.splice(0, spliceLength)
+        }else{
+            tables[index] = rows
+        }    
+    })
+    return tables
+}
 
 const retrieveDate = (rows) => {
     var date = document.createElement('header')
@@ -32,6 +58,7 @@ const retrieveDate = (rows) => {
 }
 
 const listSpeakers = ((rows) => {
+    speakers = []
     rows.forEach((row, index) => {
         row.forEach((item, index) => {
             if(checkStringForCharacter(item, speakerSignifierStart)){
@@ -39,7 +66,57 @@ const listSpeakers = ((rows) => {
             }
         })
     })
+    console.log(speakers)
+    ArrayOfSpeakersLists.push(speakers)
 })
+
+const extractSpeakers = (item) => {
+    const startIndex = item.indexOf(speakerSignifierStart) + 1
+    const endIndex = item.indexOf(speakerSignifierEnd) 
+    let speaker = item.slice(startIndex, endIndex)
+    speakers.push(speaker)
+    const newItem = item.slice(endIndex+1)
+    if(checkStringForCharacter(newItem, speakerSignifierStart)){
+        extractSpeakers(newItem)
+    }
+}
+
+function createSpeakerTable(speakersArray){
+    ArrayOfSpeakersLists.forEach((speakerArray, index) => {
+        var speakerTable = document.createElement('table')
+        speakerTable.id = 'speaker-table'
+        speakerTable.className = 'speaker-table'
+        let thead = speakerTable.createTHead()
+        
+        let row = thead.insertRow()
+        let th = document.createElement('th')
+        let text = 'Day ' + (index + 1).toString() + ' Speakers' + ' (' + speakerArray.length.toString() + ')'
+        th.innerHTML = text
+        th.style.padding = '5px'
+        th.style.paddingTop = '5px'
+        row.appendChild(th)
+        
+    
+        var speakerTableBody = document.createElement('tbody')    
+    
+            speakerArray.forEach((speaker) => {
+                var row = document.createElement('tr')
+                row.class = 'speaker-table-row'
+                row.style.borderRight = 'white solid 0px'
+                var cell = document.createElement('td')
+                cell.class = 'speaker-table-cell'
+                cell.style.borderRight = 'white solid 0px'
+                cell.innerHTML= speaker
+                row.appendChild(cell)
+                speakerTableBody.appendChild(row)
+    
+        })
+        
+    
+        speakerTable.appendChild(speakerTableBody);
+        document.body.appendChild(speakerTable);
+    })
+}
 
 function createTable(tableData) {
     var table = document.createElement('table');
@@ -152,18 +229,6 @@ const handleEmptyCells = (rows) => {
             }
         })
     })
-}
-
-
-const extractSpeakers = (item) => {
-    const startIndex = item.indexOf(speakerSignifierStart) + 1
-    const endIndex = item.indexOf(speakerSignifierEnd) 
-    let speaker = item.slice(startIndex, endIndex)
-    speakers.push(speaker)
-    const newItem = item.slice(endIndex+1)
-    if(checkStringForCharacter(newItem, speakerSignifierStart)){
-        extractSpeakers(newItem)
-    }
 }
 
 const printRooms = (rooms) => {

@@ -62,17 +62,31 @@ function handleFiles(files) {
         // `rows` is an array of rows
       // each row being an array of cells.
       
-      retrieveDate(rows)
-      findRoomRow(rows)
-      listRooms(rows)
-      listSpeakers(rows)
-      handleGlobalRows(rows)
-      handleEmptyCells(rows)
-      convertDatesToInt(rows)
-      replaceStringCharacter(rows, '<', '')
-      replaceStringCharacter(rows, '>', '')
-      createTable(rows)
-      printSpeakers(speakers)
+      //retrieveDate(rows)
+
+      const dateRows = findDateRows(rows)
+      const tables = separateTables(rows, dateRows)
+
+
+      tables.forEach((table) => {
+        listSpeakers(table)
+      })
+
+      tables.forEach((table) => {
+        //listSpeakers(table)
+        retrieveDate(table)
+        handleGlobalRows(table)
+        handleEmptyCells(table)
+        convertDatesToInt(table)
+        replaceStringCharacter(table, '<', '')
+        replaceStringCharacter(table, '>', '')
+        createTable(table)
+      })
+
+      console.log(ArrayOfSpeakersLists)
+
+      createSpeakerTable(ArrayOfSpeakersLists)
+
       fileSelector.remove()
   
       
@@ -82,7 +96,7 @@ function handleFiles(files) {
       button.className = 'button-upload' 
       button.id = 'uploadButton'
       button.onclick = function() {
-        upload(rows);
+        upload(tables);
     };
       document.body.appendChild(button)
     })
