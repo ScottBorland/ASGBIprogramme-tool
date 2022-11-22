@@ -157,7 +157,7 @@ function createTable(tableData) {
             cell.style.border = '0px solid blue'
             cellData = replaceCellCharacter(cellData, '[reg]', '')
     }else if (checkStringForCharacter(cellData, '[e]')){
-        cell.style.backgroundColor = '#264653'
+        cell.style.backgroundColor = '#9d4edd'
         cell.innerHTML.color = 'white'
         cellData = replaceCellCharacter(cellData, '[e]', '')
     }else if (checkStringForCharacter(cellData, '[b]')){
